@@ -157,27 +157,7 @@ public class c1_Introduction extends IntroductionBase {
         CopyOnWriteArrayList<String> companyList = new CopyOnWriteArrayList<>();
 
         fortuneTop5()
-        .subscribe(new Subscriber<String>() {
-
-			@Override
-			public void onSubscribe(Subscription s) {
-			}
-
-			@Override
-			public void onNext(String t) {
-				companyList.add(t);
-			}
-
-			@Override
-			public void onError(Throwable t) {
-			}
-
-			@Override
-			public void onComplete() {
-				serviceCallCompleted.set(true);
-			}
-        	
-        })
+        .subscribe(companyList::add, e ->{},() -> serviceCallCompleted.set(true))
         //todo: change this line only
         ;
 
